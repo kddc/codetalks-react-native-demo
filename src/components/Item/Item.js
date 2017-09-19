@@ -28,7 +28,7 @@ class Item extends Component {
     item.save({depth: 1})
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { db } = this.props
     this.subscription = db.Item.find().equal('id', '/db/Item/' + this.props.id).eventStream().subscribe((event) => {
       this.setState({ item: event.data })
