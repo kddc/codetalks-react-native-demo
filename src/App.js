@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
-import { StyleSheet, Text, ScrollView, View, Button, Image, StatusBar, TouchableHighlight, Platform } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  StatusBar,
+  TouchableHighlight,
+  Platform
+} from 'react-native';
+
 import { Ionicons as Icon } from '@expo/vector-icons'
 
 // workaround as Symbol polyfill is missing on android
@@ -12,9 +21,9 @@ const { db } = require('baqend/realtime')
 
 import { BaqendProvider } from './baqend'
 
-import CreateItemScreen from './screens/CreateItemScreen'
-import ItemListScreen from './screens/ItemListScreen'
-import ItemScreen from './screens/ItemScreen'
+import QuestionCreateScreen from './screens/QuestionCreateScreen'
+import QuestionListScreen from './screens/QuestionListScreen'
+import QuestionDetailsScreen from './screens/QuestionDetailsScreen'
 
 import Logo from './codetalks.png'
 
@@ -30,14 +39,6 @@ const headerOptions = {
   headerTintColor: 'white'
 }
 
-const HeaderLogoTitle = (props) => {
-  return (
-    <View style={{alignSelf: 'stretch', alignItems: 'center'}}>
-      <Image source={Logo} style={{width: 120, height: 40, resizeMode: Image.resizeMode.contain, marginBottom: 8 }} />
-    </View>
-  )
-}
-
 const CreateItemButton = (props) => {
   return (
     <TouchableHighlight underlayColor={'transparent'} activeOpacity={0.5} onPress={props.onPress}>
@@ -46,25 +47,40 @@ const CreateItemButton = (props) => {
   )
 }
 
+// const ItemListNavigator = TabNavigator({
+//   Top: {
+//     screen: ItemListScreen,
+//   },
+//   Latest: {
+//     screen: ItemListScreen,
+//   },
+// }, {
+//   tabBarPosition: 'top',
+//   animationEnabled: true,
+//   tabBarOptions: {
+//     activeTintColor: '#e91e63',
+//   },
+// });
+
 const Navigator = StackNavigator({
-  Home: {
-    screen: ItemListScreen,
+  QuestionList: {
+    screen: QuestionListScreen,
     navigationOptions: ({ navigation }) => ({
-      headerLeft: <View style={{ paddingLeft: 56 }} />,
-      headerTitle: <HeaderLogoTitle />,
-      headerRight: <CreateItemButton onPress={() => navigation.navigate('Create', {})} />,
+      headerLeft: <Image source={Logo} style={{width: 40, height: 24, resizeMode: Image.resizeMode.contain, margin: 8 }} />,
+      headerTitle: 'Ask code.talks',
+      headerRight: <CreateItemButton onPress={() => navigation.navigate('QuestionCreate', {})} />,
       ...headerOptions
     })
   },
-  Item: {
-    screen: ItemScreen,
+  QuestionDetails: {
+    screen: QuestionDetailsScreen,
     navigationOptions: ({navigation}) => ({
       headerTitle: 'Item',
       ...headerOptions
     })
   },
-  Create: {
-    screen: CreateItemScreen,
+  QuestionCreate: {
+    screen: QuestionCreateScreen,
     navigationOptions: ({navigation}) => ({
       headerTitle: 'Create Item',
       ...headerOptions

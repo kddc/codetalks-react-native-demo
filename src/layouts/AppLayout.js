@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { withNavigation } from 'react-navigation';
-import { StyleSheet, Text, ScrollView, View, Button } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
 class AppLayout extends Component {
 

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
 import AppLayout from '../layouts/AppLayout'
-import Item from '../components/Item/Item'
+import QuestionDetails from '../components/QuestionDetails/QuestionDetails'
 
-class ItemScreen extends Component {
+class QuestionDetailsScreen extends Component {
   render() {
     const { params } = this.props.navigation.state;
     return (
       <AppLayout>
-        <Item id={params.id}/>
+        <QuestionDetails id={params.id}/>
       </AppLayout>
     )
   }
 }
 
-export default ItemScreen;
+export default QuestionDetailsScreen;
