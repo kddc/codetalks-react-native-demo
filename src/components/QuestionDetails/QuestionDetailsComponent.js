@@ -27,9 +27,8 @@ class QuestionDetailsComponent extends Component {
             {this.props.answers.map((answer) => (
               <View key={answer.key} style={styles.answer}>
 
-                <TouchableHighlight onPress={() => this.handleUpvoteAnswer(answer)}>
+                <TouchableHighlight onPress={() => this.handleUpvoteAnswer(answer)} underlayColor="#e8e8e8">
                   <View style={styles.upvotes}>
-                    <Icon name='md-arrow-dropup' size={16} style={styles.arrow}/>
                     <Text style={styles.score}>{answer.upvotes}</Text>
                   </View>
                 </TouchableHighlight>

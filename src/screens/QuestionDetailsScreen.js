@@ -8,7 +8,7 @@ class QuestionDetailsScreen extends Component {
     const { params } = this.props.navigation.state;
     return (
       <AppLayout>
-        <QuestionDetails id={params.id}/>
+        <QuestionDetails match={this.props.navigation.state}/>
       </AppLayout>
     )
   }

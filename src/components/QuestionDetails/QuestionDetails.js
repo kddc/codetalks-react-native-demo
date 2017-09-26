@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { baqend } from '../../baqend'
+import React, { Component } from 'react'
+import { baqend } from 'react-baqend-provider'
 
 import QuestionDetailsComponent from './QuestionDetailsComponent'
 
@@ -10,48 +10,6 @@ class QuestionDetails extends Component {
       question: {},
       answers: []
     }
-  }
-
-  onUpvoteAnswer = (answer) => {
-    answer.upvotes++
-    answer.save()
-  }
-
-  onSubmitAnswer = (data) => {
-    const { db } = this.props
-    const { question } = this.state
-    const answer = new db.Answer({
-      ...data,
-      question
-    })
-    question.answers.push(answer)
-    question.save({ depth: 1 })
-  }
-
-  componentDidMount() {
-    const { db } = this.props
-
-    this.questionSubscription = db.Question
-      .find()
-        .equal('id', '/db/Question/' + this.props.id)
-      .eventStream()
-        .subscribe((event) => {
-          const question = event.data
-          this.setState({ question })
-        })
-
-    this.answersSubscription = db.Answer
-      .find()
-        .equal('question', '/db/Question/' + this.props.id)
-      .resultStream()
-        .subscribe((answers) => {
-          this.setState({ answers })
-        })
-  }
-
-  componentWillUnmount() {
-    this.questionSubscription.unsubscribe()
-    this.answersSubscription.unsubscribe()
   }
 
   render() {
@@ -66,4 +24,4 @@ class QuestionDetails extends Component {
 
 }
 
-export default baqend(QuestionDetails);
+export default baqend(QuestionDetails)

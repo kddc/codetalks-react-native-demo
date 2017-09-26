@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, Button, TouchableHighlight } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import { Ionicons as Icon } from '@expo/vector-icons'
 
 class QuestionComponent extends Component {
 
@@ -16,9 +15,8 @@ class QuestionComponent extends Component {
       <TouchableHighlight onPress={() => navigate('QuestionDetails', { id: question.key })}>
         <View style={styles.question}>
 
-          <TouchableHighlight onPress={this.handleUpvote}>
+          <TouchableHighlight onPress={this.handleUpvote} underlayColor="#e8e8e8">
             <View style={styles.upvotes}>
-              <Icon name='md-arrow-dropup' size={16} style={styles.arrow}/>
               <Text style={styles.score}>
                 {question.upvotes}
               </Text>
@@ -32,7 +30,7 @@ class QuestionComponent extends Component {
             <View style={styles.info}>
               <Text>{question.author}</Text>
               <Text> | </Text>
-              <Text>{question.answers && question.answers.length} answers</Text>
+              <Text>{question.answers} answers</Text>
             </View>
           </View>
 
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     padding: 16,
-    width: 64,
+    width: 72,
     flex: 1
   },
   score: {
