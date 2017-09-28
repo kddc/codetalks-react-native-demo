@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     padding: 16,
-    width: 72,
+    width: 76,
     flex: 1
   },
   score: {
